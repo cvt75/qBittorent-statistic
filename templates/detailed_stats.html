@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>qBittorrent Statisztikák</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #1e1e1e; /* Sötét háttér */
+            color: #dcdcdc; /* Világos szürke szöveg */
+            margin: 20px auto; /* Középre igazítás és margók */
+            max-width: 1240px; /* Maximális szélesség */
+        }
+        h1, h2, h3 {
+            color: #569cd6; /* Kék címek */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #252526;
+            color: #eee;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #569cd6; /* Kék háttér (a címek színe) */
+            color: #eee;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .button:hover {
+            background-color: #447ab3; /* Sötétebb kék hover effekt */
+        }
+    </style>
+</head>
+<body style="font-family: sans-serif; background-color: #1e1e1e; color: #dcdcdc; margin: 20px auto; max-width: 1240px;">
+    <h2>qBittorrent Statisztikák</h2>
+    <a href="/" class="button">Vissza a Főoldalra</a>
+    <a href="/ncore_stats" class="button">Ncore Statisztikák</a> <h2>Heti Statisztikák</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Hét</th>
+                {% for week_data in weekly_stats|reverse %}
+                    <th>{{ week_data.week }}. hét</th>
+                {% else %}
+                    <th>Nincs adat</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Heti Letöltés (GB)</th>
+                {% for week_data in weekly_stats|reverse %}
+                    <td>{{ week_data.download|round(3) }}</td>
+                {% else %}
+                    <td>Nincs adat</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Heti Feltöltés (GB)</th>
+                {% for week_data in weekly_stats|reverse %}
+                    <td>{{ week_data.upload|round(3) }}</td>
+                {% else %}
+                    <td>Nincs adat</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Havi Statisztikák</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Hónap</th>
+                {% for month_data in monthly_stats %}
+                    <th>{{ month_data.year }}-{{ month_data.month }}</th>
+                {% else %}
+                    <th>Nincs adat</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Havi Letöltés (GB)</th>
+                {% for month_data in monthly_stats %}
+                    <td>{{ month_data.download|round(3) }}</td>
+                {% else %}
+                    <td>Nincs adat</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Havi Feltöltés (GB)</th>
+                {% for month_data in monthly_stats %}
+                    <td>{{ month_data.upload|round(3) }}</td>
+                {% else %}
+                    <td>Nincs adat</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
