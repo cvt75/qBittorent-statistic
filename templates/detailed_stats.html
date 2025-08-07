@@ -1,17 +1,25 @@
+Persze, itt van a detailed_stats.html fájl angolra fordítva, a kód módosítása nélkül.
+
+code
+Html
+download
+content_copy
+expand_less
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>qBittorrent Statisztikák</title>
+    <title>qBittorrent Statistics</title>
     <style>
         body {
             font-family: sans-serif;
-            background-color: #1e1e1e; /* Sötét háttér */
-            color: #dcdcdc; /* Világos szürke szöveg */
-            margin: 20px auto; /* Középre igazítás és margók */
-            max-width: 1240px; /* Maximális szélesség */
+            background-color: #1e1e1e; /* Dark background */
+            color: #dcdcdc; /* Light grey text */
+            margin: 20px auto; /* Centering and margins */
+            max-width: 1240px; /* Maximum width */
         }
         h1, h2, h3 {
-            color: #569cd6; /* Kék címek */
+            color: #569cd6; /* Blue headings */
         }
         table {
             border-collapse: collapse;
@@ -31,79 +39,80 @@
         .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #569cd6; /* Kék háttér (a címek színe) */
+            background-color: #569cd6; /* Blue background (same as headings) */
             color: #eee;
             text-decoration: none;
             border-radius: 5px;
             margin-bottom: 20px;
         }
         .button:hover {
-            background-color: #447ab3; /* Sötétebb kék hover effekt */
+            background-color: #447ab3; /* Darker blue on hover */
         }
     </style>
 </head>
 <body style="font-family: sans-serif; background-color: #1e1e1e; color: #dcdcdc; margin: 20px auto; max-width: 1240px;">
-    <h2>qBittorrent Statisztikák</h2>
-    <a href="/" class="button">Vissza a Főoldalra</a>
-    <a href="/ncore_stats" class="button">Ncore Statisztikák</a> <h2>Heti Statisztikák</h2>
+    <h2>qBittorrent Statistics</h2>
+    <a href="/" class="button">Back to Main Page</a>
+    <a href="/ncore_stats" class="button">Ncore Statistics</a>
+    <h2>Weekly Statistics</h2>
     <table>
         <thead>
             <tr>
-                <th>Hét</th>
+                <th>Week</th>
                 {% for week_data in weekly_stats|reverse %}
-                    <th>{{ week_data.week }}. hét</th>
+                    <th>Week {{ week_data.week }}</th>
                 {% else %}
-                    <th>Nincs adat</th>
+                    <th>No data</th>
                 {% endfor %}
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th>Heti Letöltés (GB)</th>
+                <th>Weekly Download (GB)</th>
                 {% for week_data in weekly_stats|reverse %}
                     <td>{{ week_data.download|round(3) }}</td>
                 {% else %}
-                    <td>Nincs adat</td>
+                    <td>No data</td>
                 {% endfor %}
             </tr>
             <tr>
-                <th>Heti Feltöltés (GB)</th>
+                <th>Weekly Upload (GB)</th>
                 {% for week_data in weekly_stats|reverse %}
                     <td>{{ week_data.upload|round(3) }}</td>
                 {% else %}
-                    <td>Nincs adat</td>
+                    <td>No data</td>
                 {% endfor %}
             </tr>
         </tbody>
     </table>
 
-    <h2>Havi Statisztikák</h2>
+    <h2>Monthly Statistics</h2>
     <table>
         <thead>
             <tr>
-                <th>Hónap</th>
+                <th>Month</th>
                 {% for month_data in monthly_stats %}
                     <th>{{ month_data.year }}-{{ month_data.month }}</th>
                 {% else %}
-                    <th>Nincs adat</th>
+                    <th>No data</th>
                 {% endfor %}
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th>Havi Letöltés (GB)</th>
+                <th>Monthly Download (GB)</th>
                 {% for month_data in monthly_stats %}
                     <td>{{ month_data.download|round(3) }}</td>
                 {% else %}
-                    <td>Nincs adat</td>
+                    <td>No data</td>
                 {% endfor %}
             </tr>
             <tr>
-                <th>Havi Feltöltés (GB)</th>
+                <th>Monthly Upload (GB)</th>
                 {% for month_data in monthly_stats %}
                     <td>{{ month_data.upload|round(3) }}</td>
                 {% else %}
-                    <td>Nincs adat</td>
+                    <td>No data</td>
                 {% endfor %}
             </tr>
         </tbody>
